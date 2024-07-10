@@ -82,7 +82,7 @@ const Navbar = () => {
 
                 {/* Mobile menu */}
 
-                <div>
+                <div className="z-10">
                     <ul
                         className={`${
                             isOpen ? "top-[48px] md:top-[60px]" : "-top-full"
