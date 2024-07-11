@@ -85,7 +85,7 @@ const Navbar = () => {
                 <div className="z-10">
                     <ul
                         className={`${
-                            isOpen ? "top-[48px] md:top-[60px]" : "-top-full"
+                            isOpen ? "top-[56px] md:top-[60px]" : "-top-full"
                         } fixed origin-top right-0 w-full duration-500 h-full bg-[#D9F2EF] py-4 px-4 space-y-4`}
                     >
                         {navigation.map((item, idx) => (

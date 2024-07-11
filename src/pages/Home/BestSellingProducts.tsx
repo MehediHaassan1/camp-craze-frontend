@@ -34,9 +34,11 @@ const BestSellingProducts = () => {
                     <ArrowLongRightIcon className="size-6 text-[#003B33]" />
                 </div>
             </div>
-            <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
                 {bestSellingProducts.map((item, idx) => {
-                    return <ProductCart key={idx} {...item} />;
+                    return (
+                        <ProductCart key={idx} {...item} delay={idx * 300} />
+                    );
                 })}
             </div>
         </div>

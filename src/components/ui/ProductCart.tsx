@@ -4,14 +4,16 @@ const ProductCart = ({
     name,
     price,
     image,
+    delay,
 }: {
     name: string;
     price: number;
+    delay: number;
     image: string;
 }) => {
     return (
-        <div>
-            <div className="rounded transition-colors duration-300 group-hover:bg-[#D9F2EF]">
+        <div data-aos="fade-up" data-aos-delay={delay}>
+            <div className="rounded">
                 <div className="m-6">
                     <img src={image} alt={name} className="rounded" />
                 </div>
@@ -21,7 +23,7 @@ const ProductCart = ({
                     </p>
                     <p className="text-xl mb-4">{name}</p>
                     <p className="text-2xl font-semibold mb-4">${price}</p>
-                    <button className="transition-colors duration-300 bg-[#003B33] rounded py-3 px-5 text-xl text-[#D9F2EF] group-hover:bg-[#D9F2EF]">
+                    <button className="transition-colors duration-300 bg-[#003B33] rounded py-2 px-5 lg:py-3 md:px-5 text-xl text-[#D9F2EF]">
                         shop now
                     </button>
                 </div>
