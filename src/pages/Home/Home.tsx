@@ -1,4 +1,6 @@
 import BestSellingProducts from "./BestSellingProducts";
+import Brands from "./Brands";
+import Categories from "./Categories";
 import Slider from "./Slider";
 
 const Home = () => {
@@ -6,6 +8,8 @@ const Home = () => {
         <div>
             <Slider />
             <BestSellingProducts />
+            <Brands />
+            <Categories />
         </div>
     );
 };
