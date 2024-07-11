@@ -23,7 +23,7 @@ const ProductCart = ({
                     </p>
                     <p className="text-xl mb-4">{name}</p>
                     <p className="text-2xl font-semibold mb-4">${price}</p>
-                    <button className="transition-colors duration-300 bg-[#003B33] rounded py-2 px-5 lg:py-3 md:px-5 text-xl text-[#D9F2EF]">
+                    <button className="transition-colors duration-300 bg-[#007F6D] rounded py-2 px-5 lg:py-3 md:px-5 text-xl text-[#D9F2EF]">
                         shop now
                     </button>
                 </div>

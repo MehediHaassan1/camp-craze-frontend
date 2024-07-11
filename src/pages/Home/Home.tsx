@@ -4,6 +4,7 @@ import CampPlan from "./CampPlan";
 import Categories from "./Categories";
 import Collections from "./Collections";
 import Discover from "./Discover";
+import Faq from "./Faq";
 import Slider from "./Slider";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
             <Collections />
             <Discover />
             <CampPlan />
+            <Faq />
         </div>
     );
 };

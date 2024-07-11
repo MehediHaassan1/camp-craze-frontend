@@ -46,10 +46,10 @@ const Navbar = () => {
                                 key={idx}
                                 className={({ isActive, isPending }) =>
                                     isActive
-                                        ? "active px-4 py-3 rounded text-base text-[#003B33] mx-4"
+                                        ? "active px-4 py-3 rounded text-base text-[#007F6D] mx-4"
                                         : isPending
                                         ? "pending"
-                                        : "px-4 py-3 rounded text-base text-[#003B33] mx-4"
+                                        : "px-4 py-3 rounded text-base text-[#007F6D] mx-4"
                                 }
                             >
                                 {item.name}
@@ -60,13 +60,13 @@ const Navbar = () => {
                 <div className="flex items-center gap-2 md:gap-4">
                     <NavLink
                         to="/wishlist"
-                        className="px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#003B33]"
+                        className="px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#007F6D]"
                     >
                         <HeartIcon className="size-6" />
                     </NavLink>
                     <NavLink
                         to="/cart"
-                        className="px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#003B33]"
+                        className="px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#007F6D]"
                     >
                         <ShoppingBagIcon className="size-6" />
                     </NavLink>
@@ -95,8 +95,8 @@ const Navbar = () => {
                                     key={idx}
                                     className={({ isActive }) =>
                                         isActive
-                                            ? "w-full px-4 py-3 rounded text-base text-[#D9F2EF] bg-[#003B33] inline-block"
-                                            : "w-full px-4 py-3 rounded text-base text-[#003B33]"
+                                            ? "w-full px-4 py-3 rounded text-base text-[#D9F2EF] bg-[#007F6D] inline-block"
+                                            : "w-full px-4 py-3 rounded text-base text-[#007F6D]"
                                     }
                                     onClick={() => setOpen(false)}
                                 >

@@ -4,7 +4,7 @@ const Discover = () => {
     return (
         <div className="my-8 md:my-12">
             <h1 className="text-2xl md:text-4xl lg:text-6xl">
-                We Live To <span className="text-[#003B33]">Discover</span>
+                We Live To <span className="text-[#007F6D]">Discover</span>
             </h1>
             <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-2 md:gap-6 md:h-[400px] content-center">
                 <div className="rounded overflow-hidden">
@@ -30,7 +30,7 @@ const Discover = () => {
                         life's final journey, every moment is a chance for
                         discovery.
                     </p>
-                    <button className="transition-colors duration-300 bg-[#003B33] rounded py-2 px-5  lg:py-3 md:px-5 text-sm lg:text-xl text-[#D9F2EF]">
+                    <button className="transition-colors duration-300 bg-[#007F6D] rounded py-2 px-5  lg:py-3 md:px-5 text-sm lg:text-xl text-[#D9F2EF]">
                         SHOP THEIR LATEST COLLECTION
                     </button>
                 </div>

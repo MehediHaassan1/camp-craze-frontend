@@ -27,11 +27,11 @@ const BestSellingProducts = () => {
         <div>
             <div className="flex items-center justify-between">
                 <h1 className="text-2xl md:text-4xl lg:text-6xl">
-                    <span className="text-[#003B33]">Best</span> Selling
+                    <span className="text-[#007F6D]">Best</span> Selling
                 </h1>
                 <div className="flex items-center gap-4">
                     <p className="text-base md:text-xl">See All</p>
-                    <ArrowLongRightIcon className="size-6 text-[#003B33]" />
+                    <ArrowLongRightIcon className="size-6 text-[#007F6D]" />
                 </div>
             </div>
             <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
