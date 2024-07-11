@@ -1,6 +1,7 @@
 import BestSellingProducts from "./BestSellingProducts";
 import Brands from "./Brands";
 import Categories from "./Categories";
+import Collections from "./Collections";
 import Slider from "./Slider";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
             <BestSellingProducts />
             <Brands />
             <Categories />
+            <Collections />
         </div>
     );
 };
