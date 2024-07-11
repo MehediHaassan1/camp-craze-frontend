@@ -71,7 +71,7 @@ const Slider = () => {
                                     <p className="text-sm md:text-lg lg:text-xl mb-6">
                                         {item.subtitle1}
                                     </p>
-                                    <h2 className="text-2xl md:text-4xl lg:text-6xl mb-4">
+                                    <h2 className="text-3xl md:text-4xl lg:text-6xl mb-4">
                                         {item.title}
                                     </h2>
                                     <p className="text-sm md:text-lg lg:text-xl mb-8">

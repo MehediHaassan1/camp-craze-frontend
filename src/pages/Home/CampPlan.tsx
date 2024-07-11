@@ -3,7 +3,7 @@ import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 const CampPlan = () => {
     return (
         <div className="my-8 md:my-12">
-            <h1 className="text-2xl md:text-4xl lg:text-6xl">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl">
                 <span className="text-[#007F6D]">Adventure</span> Awaits
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12 md:my-16 space-y-8 md:space-y-0">

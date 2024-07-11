@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 const Discover = () => {
     return (
         <div className="my-8 md:my-12">
-            <h1 className="text-2xl md:text-4xl lg:text-6xl">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl">
                 We Live To <span className="text-[#007F6D]">Discover</span>
             </h1>
             <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-2 md:gap-6 md:h-[400px] content-center">

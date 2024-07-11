@@ -26,7 +26,7 @@ const BestSellingProducts = () => {
     return (
         <div>
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl md:text-4xl lg:text-6xl">
+                <h1 className="text-3xl md:text-4xl lg:text-6xl">
                     <span className="text-[#007F6D]">Best</span> Selling
                 </h1>
                 <div className="flex items-center gap-4">

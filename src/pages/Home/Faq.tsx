@@ -39,7 +39,7 @@ const faqData = [
 const Faq = () => {
     return (
         <div>
-            <h1 className="text-2xl md:text-4xl lg:text-6xl">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl">
                 Frequently Asked Questions
             </h1>
             <div className="max-w-5xl mx-auto my-8 md:my-12">
