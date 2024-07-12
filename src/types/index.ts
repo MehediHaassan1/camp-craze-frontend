@@ -11,3 +11,14 @@ export type TProduct = {
     isDeleted: boolean;
     tag: string;
 }
+
+export type TCartProduct = {
+    productId: string;
+    price: number;
+    quantity: number;
+}
+
+export type TProductsState = {
+    products: TCartProduct[];
+}
+

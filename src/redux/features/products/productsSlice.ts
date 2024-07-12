@@ -1,35 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { TCartProduct, TProductsState } from '@/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface CounterState {
-  value: number
+    value: number
 }
 
-const initialState: CounterState = {
-  value: 0,
-}
+const initialState: TProductsState = {
+    products: [],
+};
 
 export const productsSlice = createSlice({
-  name: 'products',
-  initialState,
-  reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
+    name: 'products',
+    initialState,
+    reducers: {
+        addProduct: (state, action: PayloadAction<TCartProduct>) => {
+            const { productId, price, quantity } = action.payload;
+            const existingProduct = state.products.find(prod => prod.productId === productId);
+
+            if (existingProduct) {
+                // Product already exists, increment quantity
+                existingProduct.quantity += quantity;
+            } else {
+                // Product does not exist, add new product
+                state.products.push({
+                    productId,
+                    price,
+                    quantity,
+                });
+            }
+        },
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    },
-  },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = productsSlice.actions
+export const { addProduct } = productsSlice.actions
 
 export default productsSlice.reducer

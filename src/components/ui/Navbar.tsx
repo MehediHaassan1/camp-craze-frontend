@@ -4,8 +4,11 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
+import { useAppSelector } from "@/redux/hook";
 
 const Navbar = () => {
+    const products = useAppSelector((state) => state.products.products);
+    console.log(products);
     const navigation = [
         {
             path: "/",
@@ -66,9 +69,12 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink
                         to="/cart"
-                        className="px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#007F6D]"
+                        className="relative px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#007F6D]"
                     >
                         <ShoppingBagIcon className="size-6" />
+                        <p className="absolute right-0 top-0 size-7 rounded-full bg-white flex items-center justify-center font-bold">
+                            {products.length > 0 ? products.length : 0}
+                        </p>
                     </NavLink>
                     <div className="lg:hidden">
                         <Hamburger
