@@ -3,10 +3,10 @@ import { FaFacebookF, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 const Footer = () => {
     return (
         <footer className="relative bg-blueGray-200 pt-8 pb-6">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto">
                 <div className="flex flex-wrap text-left lg:text-left">
-                    <div className="w-full lg:w-6/12 px-4">
-                        <h4 className="text-3xl font-semibold text-blueGray-700">
+                    <div className="w-full lg:w-6/12">
+                        <h4 className="text-3xl font-semibold">
                             Let's keep in{" "}
                             <span className="text-[#007F6D]">touch!</span>
                         </h4>
@@ -43,7 +43,7 @@ const Footer = () => {
                     </div>
                     <div className="w-full lg:w-6/12 px-4">
                         <div className="flex flex-wrap md:flex-nowrap  items-top mb-6">
-                            <div className="w-full lg:w-4/12 px-4 ml-auto">
+                            <div className="w-full lg:w-4/12 ml-auto">
                                 <span className="block uppercase text-[#007F6D] font-semibold mb-2">
                                     Useful Links
                                 </span>
@@ -70,7 +70,7 @@ const Footer = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="w-full lg:w-4/12 px-4">
+                            <div className="w-full lg:w-4/12">
                                 <span className="block uppercase text-[#007F6D] font-semibold mb-2">
                                     Other Resources
                                 </span>
