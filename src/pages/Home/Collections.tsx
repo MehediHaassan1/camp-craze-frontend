@@ -1,4 +1,4 @@
-import ProductCart from "@/components/ui/ProductCart";
+import ProductCard from "@/components/ui/ProductCard";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 const bestSellingProducts = [
@@ -55,7 +55,7 @@ const Collections = () => {
             <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
                 {bestSellingProducts.map((item, idx) => {
                     return (
-                        <ProductCart key={idx} {...item} delay={idx * 300} />
+                        <ProductCard key={idx} {...item} delay={idx * 300} />
                     );
                 })}
             </div>

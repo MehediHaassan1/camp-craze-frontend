@@ -1,5 +1,7 @@
-import { Input } from "@/components/ui/input";
-import ProductCart from "@/components/ui/ProductCart";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import ProductCard from "@/components/ui/ProductCard";
 import {
     Select,
     SelectContent,
@@ -9,29 +11,42 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useGetProductsQuery } from "@/redux/features/products/productsApi";
+import { TProduct } from "@/types";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { ChangeEvent, useCallback, useState } from "react";
 
-const products = [
-    {
-        name: "Camping Tent",
-        price: 69.99,
-        category: "Camping Gear",
-        image: "https://plus.unsplash.com/premium_photo-1663045950876-51a31ccce956?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fENhbXBpbmclMjBUZW50JTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D",
-    },
-    {
-        name: "Sleeping Bag",
-        price: 49.99,
-        category: "Sleeping Bags",
-        image: "https://images.unsplash.com/photo-1627907229506-d9a90984a269?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2xlZXBpbmclMjBiYWd8ZW58MHwwfDB8fHww",
-    },
-    {
-        name: "Camping Stove",
-        price: 79.99,
-        category: "Cooking Equipment",
-        image: "https://images.unsplash.com/photo-1664429764866-227d36d8c1a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fENhbXBpbmclMjBTdG92ZXxlbnwwfDB8MHx8fDA%3D",
-    },
-];
+// Debounce function
+const debounce = (func: (...args: any[]) => void, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), wait);
+    };
+};
 
-const Products = () => {
+const Products: React.FC = () => {
+    const [searchValue, setSearchValue] = useState<string>("");
+    const { data, isLoading } = useGetProductsQuery(searchValue);
+
+    const debouncedSearch = useCallback(
+        debounce((value: string) => {
+            setSearchValue(value);
+        }, 500),
+        []
+    );
+
+    const handleInputChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            debouncedSearch(event.target.value);
+        },
+        [debouncedSearch]
+    );
+
+    if (isLoading) {
+        return <div>Loading ...</div>;
+    }
+
     return (
         <div className="my-8 md:my-12">
             <div>
@@ -59,11 +74,25 @@ const Products = () => {
                         </Select>
                     </div>
                     <div className="col-span-2 w-6/12">
-                        <Input
-                            className="w-full rounded col-span-2"
-                            type="text"
-                            placeholder="Search your desired products"
-                        />
+                        <div className="flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-primary-300 focus-within:border-primary">
+                            <input
+                                type="search"
+                                className="w-full px-4 py-2 text-primary-400 focus:outline-none border-none"
+                                placeholder="Search products..."
+                                defaultValue={searchValue}
+                                onChange={handleInputChange}
+                                // onChange={(e) =>
+                                //     debouncedSearch(e.target.value)
+                                // }
+                            />
+                            <button
+                                type="submit"
+                                className="flex items-center justify-center px-4 py-2 text-white transition-colors duration-300 bg-primary-300 "
+                                style={{ height: "40px" }}
+                            >
+                                <MagnifyingGlassIcon className="h-5 w-5 text-red-500" />
+                            </button>
+                        </div>
                     </div>
                     <div className="">
                         <Select>
@@ -86,15 +115,9 @@ const Products = () => {
                     </div>
                 </div>
                 <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
-                    {products.map((item, idx) => {
-                        return (
-                            <ProductCart
-                                key={idx}
-                                {...item}
-                                delay={idx * 300}
-                            />
-                        );
-                    })}
+                    {data.data.map((item: TProduct, idx: number) => (
+                        <ProductCard key={idx} {...item} delay={idx * 300} />
+                    ))}
                 </div>
             </div>
         </div>

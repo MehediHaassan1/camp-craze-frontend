@@ -4,6 +4,7 @@ import Home from "@/pages/Home/Home";
 import Products from "@/pages/Products/Products";
 import ProductsManagement from "@/pages/ProductsManagement/ProductsManagement";
 import About from "@/pages/About/About";
+import ProductDetails from "@/pages/Products/ProductDetails";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
                 element: <Products />,
             },
             {
+                path: "products/:id",
+                element: <ProductDetails />,
+            },
+            {
                 path: "products-management",
                 element: <ProductsManagement />,
             },
@@ -27,15 +32,16 @@ const router = createBrowserRouter([
                 element: <About />,
             },
             {
-              path: 'wishlist',
-              element: <div>THis is wishlist</div>
+                path: "wishlist",
+                element: <div>THis is wishlist</div>,
             },
             {
-              path: 'cart',
-              element: <div>THis is cart</div>
+                path: "cart",
+                element: <div>THis is cart</div>,
             },
         ],
     },
+    
 ]);
 
 export default router;
