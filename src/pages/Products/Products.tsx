@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ProductCard from "@/components/ui/ProductCard";
+import React, { useCallback, useState, ChangeEvent } from "react";
 import {
     Select,
     SelectContent,
@@ -11,10 +10,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
 import { TProduct } from "@/types";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { ChangeEvent, useCallback, useState } from "react";
+import ProductCard from "@/components/ui/ProductCard";
 
 // Debounce function
 const debounce = (func: (...args: any[]) => void, wait: number) => {
@@ -27,7 +26,12 @@ const debounce = (func: (...args: any[]) => void, wait: number) => {
 
 const Products: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>("");
-    const { data, isLoading } = useGetProductsQuery(searchValue);
+    const [sortBy, setSortBy] = useState<string>("");
+
+    const { data, isLoading } = useGetProductsQuery({
+        search: searchValue,
+        sortBy,
+    });
 
     const debouncedSearch = useCallback(
         debounce((value: string) => {
@@ -43,6 +47,10 @@ const Products: React.FC = () => {
         [debouncedSearch]
     );
 
+    const handleSortChange = (value: string) => {
+        setSortBy(value);
+    };
+
     if (isLoading) {
         return <div>Loading ...</div>;
     }
@@ -55,7 +63,7 @@ const Products: React.FC = () => {
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center my-8 md:my-12">
                     <div className="">
-                        <Select>
+                        <Select onValueChange={handleSortChange}>
                             <SelectTrigger className="w-[180px]">
                                 <SelectValue placeholder="Sort Products" />
                             </SelectTrigger>
@@ -63,12 +71,8 @@ const Products: React.FC = () => {
                                 <SelectGroup>
                                     <SelectLabel>Customize</SelectLabel>
                                     <SelectItem value="0">All</SelectItem>
-                                    <SelectItem value="1">
-                                        Price low to high
-                                    </SelectItem>
-                                    <SelectItem value="-1">
-                                        Price high to low
-                                    </SelectItem>
+                                    <SelectItem value="1">Price low to high</SelectItem>
+                                    <SelectItem value="-1">Price high to low</SelectItem>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
@@ -81,37 +85,15 @@ const Products: React.FC = () => {
                                 placeholder="Search products..."
                                 defaultValue={searchValue}
                                 onChange={handleInputChange}
-                                // onChange={(e) =>
-                                //     debouncedSearch(e.target.value)
-                                // }
                             />
                             <button
                                 type="submit"
-                                className="flex items-center justify-center px-4 py-2 text-white transition-colors duration-300 bg-primary-300 "
+                                className="flex items-center justify-center px-4 py-2 text-white transition-colors duration-300 bg-primary-300"
                                 style={{ height: "40px" }}
                             >
                                 <MagnifyingGlassIcon className="h-5 w-5 text-red-500" />
                             </button>
                         </div>
-                    </div>
-                    <div className="">
-                        <Select>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="Sort Products" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Customize</SelectLabel>
-                                    <SelectItem value="0">All</SelectItem>
-                                    <SelectItem value="1">
-                                        Price low to high
-                                    </SelectItem>
-                                    <SelectItem value="-1">
-                                        Price high to low
-                                    </SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
                     </div>
                 </div>
                 <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">

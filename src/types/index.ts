@@ -13,8 +13,11 @@ export type TProduct = {
 }
 
 export type TCartProduct = {
+    name: string;
+    image: string;
     productId: string;
     price: number;
+    stock: number;
     quantity: number;
 }
 

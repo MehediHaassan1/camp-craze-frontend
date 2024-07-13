@@ -25,6 +25,9 @@ const ProductDetails = () => {
             return;
         }
         const orderData = {
+            name,
+            stock,
+            image:coverImage,
             productId: _id,
             price,
             quantity: Number(orderQuantity),

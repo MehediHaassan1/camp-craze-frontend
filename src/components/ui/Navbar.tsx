@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
@@ -8,7 +8,7 @@ import { useAppSelector } from "@/redux/hook";
 
 const Navbar = () => {
     const products = useAppSelector((state) => state.products.products);
-    console.log(products);
+    
     const navigation = [
         {
             path: "/",
@@ -61,13 +61,13 @@ const Navbar = () => {
                     })}
                 </div>
                 <div className="flex items-center gap-2 md:gap-4">
-                    <NavLink
+                    <Link
                         to="/wishlist"
                         className="px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#007F6D]"
                     >
                         <HeartIcon className="size-6" />
-                    </NavLink>
-                    <NavLink
+                    </Link>
+                    <Link
                         to="/cart"
                         className="relative px-2 py-1 md:px-4 md:py-3 rounded text-base text-[#007F6D]"
                     >
@@ -75,7 +75,7 @@ const Navbar = () => {
                         <p className="absolute right-0 top-0 size-7 rounded-full bg-white flex items-center justify-center font-bold">
                             {products.length > 0 ? products.length : 0}
                         </p>
-                    </NavLink>
+                    </Link>
                     <div className="lg:hidden">
                         <Hamburger
                             duration={0.5}

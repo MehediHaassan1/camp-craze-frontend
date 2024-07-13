@@ -7,12 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 const BestSellingProducts = () => {
     const navigate = useNavigate();
-
-    const { data, isLoading } = useGetProductsQuery(undefined);
+    const search = '';
+    const sortBy = '';
+    // const [search, setSearch] = useState('');
+    //     const [sortBy, setSortBy] = useState('');
+    const { data, isLoading } = useGetProductsQuery({ search, sortBy });
     if (isLoading) {
         return <div>Loading ...</div>;
     }
-    const products = data.data.filter(
+    const products = data?.data?.filter(
         (pd: Record<string, any>) => pd.tag === "recommended"
     );
 
@@ -31,7 +34,7 @@ const BestSellingProducts = () => {
                 </div>
             </div>
             <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
-                {products.map((item: TProduct, idx: number) => {
+                {products?.map((item: TProduct, idx: number) => {
                     return (
                         <ProductCard key={idx} {...item} delay={idx * 300} />
                     );
