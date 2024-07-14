@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TagIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 

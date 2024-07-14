@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useState, ChangeEvent } from "react";
@@ -12,8 +13,9 @@ import {
 } from "@/components/ui/select";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useGetProductsQuery } from "@/redux/features/products/productsApi";
-import { TProduct } from "@/types";
 import ProductCard from "@/components/ui/ProductCard";
+import { useLocation } from "react-router-dom";
+import Loading from "@/components/ui/Loading";
 
 // Debounce function
 const debounce = (func: (...args: any[]) => void, wait: number) => {
@@ -24,13 +26,23 @@ const debounce = (func: (...args: any[]) => void, wait: number) => {
     };
 };
 
+const catagoryQuery = () => {
+    return new URLSearchParams(useLocation().search);
+};
+
 const Products: React.FC = () => {
+    const queryCatagory = catagoryQuery();
+    const catagoryData = queryCatagory.get("category") || "all";
     const [searchValue, setSearchValue] = useState<string>("");
     const [sortBy, setSortBy] = useState<string>("");
+    const [category, setCategory] = useState<string>(catagoryData);
+    const [price, setPrice] = useState<number>(0);
 
     const { data, isLoading } = useGetProductsQuery({
         search: searchValue,
         sortBy,
+        category,
+        price,
     });
 
     const debouncedSearch = useCallback(
@@ -51,8 +63,17 @@ const Products: React.FC = () => {
         setSortBy(value);
     };
 
+    const handleCategoryChange = (value: string) => {
+        setCategory(value);
+    };
+
+    const handlePriceRange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const parsedValue = parseInt(e.target.value);
+        setPrice(parsedValue);
+    };
+
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <Loading />;
     }
 
     return (
@@ -61,23 +82,8 @@ const Products: React.FC = () => {
                 <h1 className="text-3xl md:text-4xl lg:text-6xl text-center">
                     Products
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-4 justify-items-center my-8 md:my-12">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 my-8 md:my-12">
                     <div className="">
-                        <Select onValueChange={handleSortChange}>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="Sort Products" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Customize</SelectLabel>
-                                    <SelectItem value="0">All</SelectItem>
-                                    <SelectItem value="1">Price low to high</SelectItem>
-                                    <SelectItem value="-1">Price high to low</SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="col-span-2 w-6/12">
                         <div className="flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-primary-300 focus-within:border-primary">
                             <input
                                 type="search"
@@ -95,12 +101,102 @@ const Products: React.FC = () => {
                             </button>
                         </div>
                     </div>
+                    <div className="w-full">
+                        <div className="flex items-center justify-between">
+                            <label
+                                htmlFor="minmax-range"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >
+                                ${price}
+                            </label>
+                            <label
+                                htmlFor="minmax-range"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >
+                                $1000
+                            </label>
+                        </div>
+                        <input
+                            onChange={handlePriceRange}
+                            id="minmax-range"
+                            type="range"
+                            min="0"
+                            max="1000"
+                            defaultValue={price}
+                            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                        />
+                    </div>
+                    <div className="w-full">
+                        <Select onValueChange={handleSortChange}>
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Sort Products" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel>Customize</SelectLabel>
+                                    <SelectItem value="0">All</SelectItem>
+                                    <SelectItem value="1">
+                                        Price low to high
+                                    </SelectItem>
+                                    <SelectItem value="-1">
+                                        Price high to low
+                                    </SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div>
+                        <Select
+                            defaultValue={catagoryData}
+                            onValueChange={handleCategoryChange}
+                        >
+                            <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Filter Products" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectLabel>Customize</SelectLabel>
+                                    <SelectItem value="all">All</SelectItem>
+                                    <SelectItem value="Tents and Shelters">
+                                        Tents and Shelters
+                                    </SelectItem>
+                                    <SelectItem value="Cooking and Dining">
+                                        Cooking and Dining
+                                    </SelectItem>
+                                    <SelectItem value="Sleeping Gear">
+                                        Sleeping Gear
+                                    </SelectItem>
+                                    <SelectItem value="Hiking and Trekking">
+                                        Hiking and Trekking
+                                    </SelectItem>
+                                    <SelectItem value="Accessories and Gadgets">
+                                        Accessories and Gadgets
+                                    </SelectItem>
+                                    <SelectItem value="Clothing and Apparel">
+                                        Clothing and Apparel
+                                    </SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
-                <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
-                    {data.data.map((item: TProduct, idx: number) => (
-                        <ProductCard key={idx} {...item} delay={idx * 300} />
-                    ))}
-                </div>
+                {data.data.length < 1 ? (
+                    <div className="text-3xl md:text-5xl my-8 md:my-12 text-center">
+                        {" "}
+                        <h1>Data not found!</h1>
+                    </div>
+                ) : (
+                    <div className="my-8 md:my-12 grid grid-cols-1 md:grid-cols-3 lg:gap-6">
+                        {data.data?.map((item: any, idx: number) => (
+                            <ProductCard
+                                key={idx}
+                                {...item}
+                                delay={idx * 300}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );

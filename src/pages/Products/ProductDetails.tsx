@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input";
+import Loading from "@/components/ui/Loading";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { addProduct } from "@/redux/features/products/productsSlice";
 import { useAppDispatch } from "@/redux/hook";
@@ -14,7 +15,7 @@ const ProductDetails = () => {
     const dispatch = useAppDispatch();
 
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <Loading/>
     }
 
     const { coverImage, stock, description, price, name, _id } = data.data;

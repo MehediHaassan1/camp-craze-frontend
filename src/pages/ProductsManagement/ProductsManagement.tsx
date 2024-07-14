@@ -14,9 +14,13 @@ const ProductManagement = () => {
     const [deleteProduct] = useDeleteProductMutation();
     const search = "";
     const sortBy = "";
+    const category = "";
+    const price = 0;
     const { data: products, isLoading } = useGetProductsQuery({
         search,
         sortBy,
+        category,
+        price,
     });
 
     const handleDeleteProduct = (id: string) => {

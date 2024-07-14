@@ -3,27 +3,32 @@ import firstAidKit from "../../assets/icons/first-aid-kit.svg";
 import tent from "../../assets/icons/tent.svg";
 import backpack from "../../assets/icons/backpack.svg";
 import cooking from "../../assets/icons/cooking.svg";
+import { useNavigate } from "react-router-dom";
 
 const categoriesData = [
     {
-        name: "First Aid Kit",
+        name: "Accessories and Gadgets",
         icon: firstAidKit,
     },
     {
-        name: "Tent",
+        name: "Tents and Shelters",
         icon: tent,
     },
     {
-        name: "Backpack",
+        name: "Hiking and Trekking",
         icon: backpack,
     },
     {
-        name: "Cooking",
+        name: "Cooking and Dining",
         icon: cooking,
     },
 ];
 
 const Categories = () => {
+    const navigate = useNavigate();
+    const handleNavigateCategories = (data: string) => {
+        navigate(`/products?category=${data}`);
+    };
     return (
         <div>
             <div className="flex items-center justify-between">
@@ -40,9 +45,15 @@ const Categories = () => {
                             data-aos="fade-up"
                             data-aos-delay={idx * 300}
                             key={category.name}
-                            className="h-[300px] flex items-center justify-center"
+                            className="h-[300px] flex items-center justify-center cursor-pointer"
+                            title={category.name}
                         >
-                            <div className="w-[250px] h-[250px] bg-[#D9F2EF] flex items-center justify-center rounded-full">
+                            <div
+                                onClick={() =>
+                                    handleNavigateCategories(category.name)
+                                }
+                                className="w-[250px] h-[250px] bg-[#D9F2EF] flex items-center justify-center rounded-full"
+                            >
                                 <img
                                     src={category.icon}
                                     alt={category.name}
