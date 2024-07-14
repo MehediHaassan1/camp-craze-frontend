@@ -54,6 +54,11 @@ export const productsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addProduct, incrementQuantity, decrementQuantity, removeProduct } = productsSlice.actions
+export const {
+    addProduct,
+    incrementQuantity,
+    decrementQuantity,
+    removeProduct
+} = productsSlice.actions
 
 export default productsSlice.reducer

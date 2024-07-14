@@ -6,7 +6,7 @@ const productsApi = baseApi.injectEndpoints({
             query: ({ search, sortBy }) => {
                 const params = new URLSearchParams();
                 if (sortBy) {
-                    params.append('sort', sortBy); // Adjusted to 'sort' to match the backend
+                    params.append('sort', sortBy);
                 }
                 if (search) {
                     params.append('search', search);
@@ -18,14 +18,44 @@ const productsApi = baseApi.injectEndpoints({
                     params,
                 };
             },
+            providesTags: ['product']
         }),
         getProductById: builder.query({
             query: (id) => ({
                 url: `/products/${id}`,
                 method: "GET",
             })
-        })
+        }),
+        createProduct: builder.mutation({
+            query: ({ data }) => ({
+                url: '/products',
+                method: 'POST',
+                body: data
+            }),
+            invalidatesTags: ['product']
+        }),
+        updateProduct: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/products/${id}`,
+                method: 'PATCH',
+                body: data
+            }),
+            invalidatesTags: ['product']
+        }),
+        deleteProduct: builder.mutation({
+            query: ({ id }) => ({
+                url: `/products/${id}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['product']
+        }),
     })
 })
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productsApi;
+export const {
+    useGetProductsQuery,
+    useGetProductByIdQuery,
+    useCreateProductMutation,
+    useUpdateProductMutation,
+    useDeleteProductMutation,
+} = productsApi;
