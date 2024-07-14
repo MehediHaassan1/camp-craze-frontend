@@ -100,7 +100,7 @@ const Cart = () => {
                                     <div className="w-36 rounded overflow-hidden">
                                         <img
                                             className="h-24 w-full"
-                                            src={item.image}
+                                            src={item.coverImage}
                                             alt={item.name}
                                         />
                                     </div>

@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
     const { id } = useParams();
-    const [orderQuantity, setOrderQuantity] = useState('1');
+    const [orderQuantity, setOrderQuantity] = useState("1");
     const { data, isLoading } = useGetProductByIdQuery(id);
     const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ const ProductDetails = () => {
         const orderData = {
             name,
             stock,
-            image:coverImage,
+            coverImage,
             productId: _id,
             price,
             quantity: Number(orderQuantity),

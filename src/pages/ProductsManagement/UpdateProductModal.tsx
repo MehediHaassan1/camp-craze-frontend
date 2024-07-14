@@ -31,6 +31,7 @@ const UpdateProductModal = ({ product }: TUpdateProductProps) => {
     const onSubmit = async (data: TProduct) => {
         // converting price and stock to number
         data.price = parseFloat(data.price.toString());
+        data.ratings = parseFloat(data.ratings.toString());
         data.stock = parseInt(data.stock.toString(), 10);
 
         // exclude empty string from images array

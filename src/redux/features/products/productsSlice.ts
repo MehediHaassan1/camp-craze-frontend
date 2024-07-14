@@ -14,7 +14,7 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         addProduct: (state, action: PayloadAction<TCartProduct>) => {
-            const { name, stock, image, productId, price, quantity } = action.payload;
+            const { name, stock, coverImage, productId, price, quantity } = action.payload;
             const existingProduct = state.products.find(prod => prod.productId === productId);
 
             if (existingProduct) {
@@ -23,7 +23,7 @@ export const productsSlice = createSlice({
                 state.products.push({
                     stock,
                     name,
-                    image,
+                    coverImage,
                     productId,
                     price,
                     quantity,
@@ -49,6 +49,9 @@ export const productsSlice = createSlice({
         removeProduct: (state, action: PayloadAction<string>) => {
             const productId = action.payload;
             state.products = state.products.filter(prod => prod.productId !== productId);
+        },
+        orderComplete: (state) => {
+            state.products = [];
         }
     },
 })
@@ -58,7 +61,8 @@ export const {
     addProduct,
     incrementQuantity,
     decrementQuantity,
-    removeProduct
+    removeProduct,
+    orderComplete,
 } = productsSlice.actions
 
 export default productsSlice.reducer

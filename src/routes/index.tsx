@@ -8,6 +8,7 @@ import ProductDetails from "@/pages/Products/ProductDetails";
 import Cart from "@/pages/Cart/Cart";
 import CheckOut from "@/pages/Cart/CheckOut";
 import OrderComplete from "@/pages/Products/OrderComplete";
+import StripePayment from "@/pages/Cart/StripePayment";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: "order-complete",
                 element: <OrderComplete />,
+            },
+            {
+                path: "stripe-payment",
+                element: <StripePayment />,
             },
         ],
     },

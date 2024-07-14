@@ -13,8 +13,8 @@ export type TProduct = {
 }
 
 export type TCartProduct = {
+    coverImage: string;
     name: string;
-    image: string;
     productId: string;
     price: number;
     stock: number;
@@ -30,3 +30,24 @@ export type TProductsState = {
     products: TCartProduct[];
 }
 
+export type TUserName = {
+    firstName: string;
+    lastName: string;
+}
+
+export type TUserAddress = {
+    address: string;
+    city: string;
+    state: string;
+    postalCode: string;
+    country: string;
+}
+
+export type TUser = {
+    name: TUserName;
+    email: string;
+    phone: number;
+    address: TUserAddress;
+    orderedProducts: TCartProduct[];
+    deliveryOption: string;
+}
