@@ -32,7 +32,7 @@ const catagoryQuery = () => {
 
 const Products: React.FC = () => {
     const queryCatagory = catagoryQuery();
-    const catagoryData = queryCatagory.get("category") || "all";
+    const catagoryData = queryCatagory.get("category") || "";
     const [searchValue, setSearchValue] = useState<string>("");
     const [sortBy, setSortBy] = useState<string>("");
     const [category, setCategory] = useState<string>(catagoryData);
@@ -160,7 +160,7 @@ const Products: React.FC = () => {
 
                         <div>
                             <Select
-                                value={catagoryData}
+                                defaultValue={catagoryData}
                                 onValueChange={handleCategoryChange}
                             >
                                 <SelectTrigger className="w-full">
