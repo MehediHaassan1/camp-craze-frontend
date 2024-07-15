@@ -3,12 +3,12 @@ import App from "../App";
 import Home from "@/pages/Home/Home";
 import Products from "@/pages/Products/Products";
 import ProductsManagement from "@/pages/ProductsManagement/ProductsManagement";
-import About from "@/pages/About/About";
 import ProductDetails from "@/pages/Products/ProductDetails";
 import Cart from "@/pages/Cart/Cart";
 import CheckOut from "@/pages/Cart/CheckOut";
 import OrderComplete from "@/pages/Products/OrderComplete";
 import StripePayment from "@/pages/Cart/StripePayment";
+import AboutUs from "@/pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
                 element: <ProductsManagement />,
             },
             {
-                path: "about",
-                element: <About />,
+                path: "about-us",
+                element: <AboutUs />,
             },
             {
                 path: "wishlist",

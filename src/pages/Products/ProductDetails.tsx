@@ -3,22 +3,35 @@ import Loading from "@/components/ui/Loading";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { addProduct } from "@/redux/features/products/productsSlice";
 import { useAppDispatch } from "@/redux/hook";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-// import { TProduct } from "@/types";
 import { useParams } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [orderQuantity, setOrderQuantity] = useState("1");
-    const { data, isLoading } = useGetProductByIdQuery(id);
+    const { data, isLoading, refetch } = useGetProductByIdQuery(id);
     const dispatch = useAppDispatch();
+    useEffect(() => {
+        refetch();
+    }, [refetch]);
 
     if (isLoading) {
-        return <Loading/>
+        return <Loading />;
     }
 
-    const { coverImage, stock, description, price, name, _id } = data.data;
+    const {
+        coverImage,
+        stock,
+        description,
+        price,
+        name,
+        _id,
+        category,
+        ratings,
+    } = data.data;
 
     const handleAddToCart = () => {
         if (orderQuantity > stock) {
@@ -56,6 +69,16 @@ const ProductDetails = () => {
                                 <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">
                                     {name}
                                 </h2>
+                                <div className="flex items-center justify-between max-w-xs my-4">
+                                    <div className="flex items-center gap-2 text-lg">
+                                        <FaInfoCircle className="text-green-300" />
+                                        {category}
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <FaStar className="text-yellow-500"/>
+                                        {ratings}
+                                    </div>
+                                </div>
                                 <p className="text-gray-500 text-sm">
                                     By Camp Craze
                                 </p>

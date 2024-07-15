@@ -78,6 +78,9 @@ const ProductManagement = () => {
                                 Price
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Quantity
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Category
                             </th>
                             <th scope="col" className="px-6 py-3">
@@ -117,6 +120,9 @@ const ProductManagement = () => {
                                         </th>
                                         <td className="px-6 py-4">
                                             ${product?.price}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {product?.stock}
                                         </td>
                                         <td className="px-6 py-4">
                                             {product?.category.toUpperCase()}

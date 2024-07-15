@@ -23,7 +23,7 @@ const Navbar = () => {
             name: "Products Management",
         },
         {
-            path: "/about",
+            path: "/about-us",
             name: "About",
         },
     ];

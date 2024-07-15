@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TagIcon } from "@heroicons/react/24/solid";
+import { FaHeart } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+
 
 const ProductCard = ({
     _id,
@@ -33,9 +35,14 @@ const ProductCard = ({
                     </p>
                     <p className="text-xl mb-4">{name}</p>
                     <p className="text-2xl font-semibold mb-4">${price}</p>
-                    <button className="transition-colors duration-300 bg-[#007F6D] rounded py-2 px-5 lg:py-3 md:px-5 text-xl text-[#D9F2EF]">
-                        <Link to={`/products/${_id}`}>shop now</Link>
-                    </button>
+                    <div className="flex items-center justify-between">
+                        <button className="transition-colors duration-300 bg-[#007F6D] rounded py-2 px-5 lg:py-3 md:px-5 text-xl text-[#D9F2EF]">
+                            <Link to={`/products/${_id}`}>shop now</Link>
+                        </button>
+                        <button>
+                            <FaHeart className="h-6 w-6" />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

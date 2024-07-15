@@ -37,7 +37,7 @@ const AddProductModal = () => {
 
         // exclude empty string from images array
         data.images = data.images.filter((img) => img.trim() !== "");
-        console.log(data);
+        
         try {
             const res = await addProduct({ data }).unwrap();
             if (res?.success) {
