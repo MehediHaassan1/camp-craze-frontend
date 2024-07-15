@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     decrementQuantity,
     incrementQuantity,
@@ -6,6 +7,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { ArrowLeftIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Minus, Plus } from "lucide-react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -13,6 +15,22 @@ import Swal from "sweetalert2";
 const Cart = () => {
     const products = useAppSelector((state) => state.products.products);
     const dispatch = useAppDispatch();
+
+    const handleRefresh = (event:any) => {
+        const message =
+            "You have items in your cart. Are you sure you want to leave?";
+        event.returnValue = message;
+        return message;
+    };
+    useEffect(() => {
+        if (products.length > 0) {
+            window.addEventListener("beforeunload", handleRefresh);
+        }
+
+        return () => {
+            window.removeEventListener("beforeunload", handleRefresh);
+        };
+    }, [products.length]);
 
     const handleQuantityDecrement = (id: string) => {
         const product = products.find((item) => item.productId === id);
