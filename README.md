@@ -1,6 +1,6 @@
 # Camp Craze
 
-## [Live Link](https://frontend-one-gamma-17.vercel.app/)
+## [Live Link](https://camp-crazee.vercel.app)
 
 ## Introduction
 

@@ -1,4 +1,3 @@
-import { Input } from "@/components/ui/input";
 import Loading from "@/components/ui/Loading";
 import { useGetProductByIdQuery } from "@/redux/features/products/productsApi";
 import { addProduct } from "@/redux/features/products/productsSlice";
@@ -11,7 +10,7 @@ import { FaInfoCircle } from "react-icons/fa";
 
 const ProductDetails = () => {
     const { id } = useParams();
-    const [orderQuantity, setOrderQuantity] = useState("1");
+    const [orderQuantity, setOrderQuantity] = useState(1);
     const { data, isLoading, refetch } = useGetProductByIdQuery(id);
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -75,7 +74,7 @@ const ProductDetails = () => {
                                         {category}
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <FaStar className="text-yellow-500"/>
+                                        <FaStar className="text-yellow-500" />
                                         {ratings}
                                     </div>
                                 </div>
@@ -104,16 +103,20 @@ const ProductDetails = () => {
                                         <div className="text-center left-0 right-0 uppercase text-gray-400 tracking-wide font-semibold">
                                             Qty
                                         </div>
-                                        <Input
+                                        <input
                                             type="number"
                                             name="quantity"
                                             id="quantity"
-                                            min={orderQuantity}
+                                            min={1} // Set the min attribute to 1
                                             max={stock}
-                                            defaultValue={1}
-                                            onChange={(e) =>
-                                                setOrderQuantity(e.target.value)
-                                            }
+                                            value={orderQuantity} // Use value instead of defaultValue to make it controlled
+                                            onChange={(e) => {
+                                                const value = Math.max(
+                                                    1,
+                                                    Number(e.target.value)
+                                                ); // Ensure value is at least 1
+                                                setOrderQuantity(value);
+                                            }}
                                             className="w-32 h-8 rounded"
                                         />
                                     </div>
