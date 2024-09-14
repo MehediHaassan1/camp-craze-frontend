@@ -15,7 +15,7 @@ Camp Craze is an innovative e-commerce platform tailored for camping enthusiasts
 -   **Admin:** Admin can easily create a new product and also a existing product or delete a product.
 -   **User:** User can search product by products name, filter product by category and sort product by price.
 -   **Routing:** Implements client-side routing using React Router to navigate between different views and components seamlessly.
--   **API Integration:** Integrates with backend APIs using Axios or Fetch for data fetching and sending requests.
+-   **API Integration:** Uses Redux for data fetching and managing the application's global state while integrating with backend APIs.
 -   **Form Handling:** Uses React Hook Form libraries for form validation and management.
 
 ## Technologies Used
